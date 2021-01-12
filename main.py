@@ -52,4 +52,5 @@ def generate_vertices(cost_path, distance_path):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    generate_vertices("vertices_cost.csv", "vertices_distances.csv")
+    # generate_vertices("vertices_cost.csv", "vertices_distances.csv")
+    generate_matrix(5, 0, 100)
