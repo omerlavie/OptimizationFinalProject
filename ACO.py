@@ -2,7 +2,7 @@ import math
 import random
 from matplotlib import pyplot as plt
 from Vertex import Vertex
-from numpy import  genfromtxt
+from numpy import genfromtxt
 
 
 bop = 4
@@ -168,6 +168,14 @@ class SolveTSPUsingACO:
         x.append(x[0])
         y = [self.nodes[i].y for i in self.global_best_tour]
         y.append(y[0])
+
+        vertices = []
+        cost_table = genfromtxt("vertices_cost2.csv", delimiter=',')
+        for i in range(len(self.nodes)):
+            vertices.append(Vertex(cost_table, self.nodes[i].x, self.nodes[i].y, i))
+        total_cost, total_dist = Vertex.calc_path_weights(vertices)
+        print(f"Total cost is: {total_cost} and total distance is: {total_dist}")
+
         plt.plot(x, y, linewidth=line_width)
         plt.scatter(x, y, s=math.pi * (point_radius ** 2.0))
         plt.title(self.mode)
