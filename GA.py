@@ -73,6 +73,12 @@ class Population:
 
 
 def generate_vertices(cost_path, distance_path):
+    """
+    The function generates vertices from distance file and cost file.
+    :param cost_path:
+    :param distance_path:
+    :return:
+    """
     list = []
     cost_file = genfromtxt(cost_path, delimiter=',')
     dist_file = genfromtxt(distance_path, delimiter=',')
