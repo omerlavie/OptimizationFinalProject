@@ -4,6 +4,8 @@ import os
 import random
 from Vertex import Vertex
 from numpy import genfromtxt
+import numpy as np
+
 
 bop = 0
 myFile = np.genfromtxt('data1.csv', delimiter=',')
@@ -103,7 +105,11 @@ def run_algorithm(n_cities, n_generations, snap_freq, cost_path, distance_path):
         best_distance.append(best_route.distance)
         if i % snap_freq == 0:
             best_route.plot(save=f"snapshots_{n_cities}cities/generation_{i}.png")
-    
+        for i in best_route.cities:
+            print(i.id, ",", end="")
+        total_cost, total_dist = Vertex.calc_path_weights(best_route.cities)
+        print(f"Total cost is: {total_cost} and total distance is: {total_dist}")
+
     fix, ax = plt.subplots(figsize=(7, 7))
     ax.plot(range(len(best_distance)), best_distance, c='k')
     plt.xlabel("Generation", fontsize=15)
@@ -114,6 +120,5 @@ def run_algorithm(n_cities, n_generations, snap_freq, cost_path, distance_path):
     
     
 if __name__ == "__main__":
-    import numpy as np
-    bop = 2
+    bop = 0
     run_algorithm(25, 20, 1, "vertices_cost2.csv", "vertices_distances2.csv")
