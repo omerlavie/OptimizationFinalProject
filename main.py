@@ -4,7 +4,7 @@ from numpy import genfromtxt
 from Vertex import Vertex
 
 
-def generate_matrix(num_of_vertices, min_cost=0, max_cost=100):
+def generate_matrix(num_of_vertices, min_cost=0, max_cost=200):
     """
     The function creates a symmetric 2D matrix that represent the cost of travel between two nodes. The cost is calculated
     randomly.
@@ -50,7 +50,13 @@ def generate_vertices(cost_path, distance_path):
     return list
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # generate_vertices("vertices_cost.csv", "vertices_distances.csv")
-    generate_matrix(5, 0, 100)
+    a = generate_matrix(40, 30, 1200)
+    with open("vertices_cost2.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(a)
+
+    b = generate_vertices_locations(40, 100, 16000)
+    with open("vertices_distances2.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(b)

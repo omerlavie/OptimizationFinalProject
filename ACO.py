@@ -2,26 +2,10 @@ import math
 import random
 from matplotlib import pyplot as plt
 from Vertex import Vertex
-from numpy import genfromtxt
 
 
-bop = 4
+bop = 0
 NUMBER_OF_OPTIONS = 5
-
-
-def generate_vertices(cost_path, distance_path):
-    """
-    The function generates vertices from distance file and cost file.
-    :param cost_path:
-    :param distance_path:
-    :return:
-    """
-    list = []
-    cost_file = genfromtxt(cost_path, delimiter=',')
-    dist_file = genfromtxt(distance_path, delimiter=',')
-    for i in range(len(cost_file)):
-        list.append(Vertex(cost_file, dist_file[i][0], dist_file[i][1], i))
-    return list
 
 
 class SolveTSPUsingACO:
@@ -170,7 +154,7 @@ class SolveTSPUsingACO:
         y.append(y[0])
 
         vertices = []
-        cost_table = genfromtxt("vertices_cost2.csv", delimiter=',')
+        cost_table = genfromtxt("vertices_cost3.csv", delimiter=',')
         for i in range(len(self.nodes)):
             vertices.append(Vertex(cost_table, self.nodes[i].x, self.nodes[i].y, i))
         total_cost, total_dist = Vertex.calc_path_weights(vertices)
@@ -190,15 +174,16 @@ class SolveTSPUsingACO:
 
 
 if __name__ == '__main__':
-    vertices = generate_vertices('vertices_cost2.csv', 'vertices_distances2.csv')
-    _colony_size = 5
-    _steps = 50
+    vertices = generate_vertices('vertices_cost3.csv', 'vertices_distances3.csv')
+    _colony_size = 30
+    _steps = 200
     acs = SolveTSPUsingACO(mode='ACS', colony_size=_colony_size, steps=_steps, nodes=vertices)
     acs.run()
     acs.plot()
-    elitist = SolveTSPUsingACO(mode='Elitist', colony_size=_colony_size, steps=_steps, nodes=vertices)
-    elitist.run()
-    elitist.plot()
-    max_min = SolveTSPUsingACO(mode='MaxMin', colony_size=_colony_size, steps=_steps, nodes=vertices)
-    max_min.run()
-    max_min.plot()
+
+    # elitist = SolveTSPUsingACO(mode='Elitist', colony_size=_colony_size, steps=_steps, nodes=vertices)
+    # elitist.run()
+    # elitist.plot()
+    # max_min = SolveTSPUsingACO(mode='MaxMin', colony_size=_colony_size, steps=_steps, nodes=vertices)
+    # max_min.run()
+    # max_min.plot()

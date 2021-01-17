@@ -1,14 +1,11 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import os
 import random
 from Vertex import Vertex
 from numpy import genfromtxt
-import numpy as np
 
 
 bop = 0
-myFile = np.genfromtxt('data1.csv', delimiter=',')
 
 class Route:
     def __init__(self, cities):

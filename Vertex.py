@@ -1,4 +1,6 @@
 import numpy as np
+from numpy import genfromtxt
+
 
 # The number of options between bop options.
 NUMBER_OF_OPTIONS = 5
@@ -50,3 +52,17 @@ class Vertex:
             total_cost += vertices[k].cost_to(vertices[(k + 1) % len(vertices)])
             total_distance += vertices[k].distance_to(vertices[(k + 1) % len(vertices)])
         return total_cost, total_distance
+
+    def generate_vertices(cost_path, distance_path):
+        """
+        The function generates vertices from distance file and cost file.
+        :param cost_path:
+        :param distance_path:
+        :return:
+        """
+        list = []
+        cost_file = genfromtxt(cost_path, delimiter=',')
+        dist_file = genfromtxt(distance_path, delimiter=',')
+        for i in range(len(cost_file)):
+            list.append(Vertex(cost_file, dist_file[i][0], dist_file[i][1], i))
+        return list
