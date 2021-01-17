@@ -6,6 +6,7 @@ from numpy import genfromtxt
 
 
 bop = 0
+mutation_prob = 1 / 1000
 
 class Route:
     def __init__(self, cities):
@@ -34,6 +35,12 @@ class Route:
             if city not in child_cities:
                 child_cities.append(city)
 
+        # Create mutation in mutation_prob probability.
+        if random.random() < mutation_prob:
+            city1, city2 = random.sample(range(len(child_cities)), 2)
+            temp_child_city = child_cities[city1]
+            child_cities[city1] = child_cities[city2]
+            child_cities[city2] = temp_child_city
         return Route(child_cities)
     
     def plot(self, save=None):
@@ -118,4 +125,4 @@ def run_algorithm(n_cities, n_generations, snap_freq, cost_path, distance_path):
     
 if __name__ == "__main__":
     bop = 0
-    run_algorithm(25, 20, 1, "data/vertices_cost2.csv", "data/vertices_distances2.csv")
+    run_algorithm(25, 20, 1, "data/vertices_cost4.csv", "data/vertices_distances4.csv")

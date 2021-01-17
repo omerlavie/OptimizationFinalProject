@@ -45,12 +45,14 @@ class Vertex:
         normalization_val = 1 / (NUMBER_OF_OPTIONS - 1)
         return (1 - bop * normalization_val) * self.distance_to(vertex) + bop * normalization_val * self.cost_to(vertex)
 
-    def calc_path_weights(vertices):
+    def calc_path_weights(vertices, path=0):
+        if path == 0:
+            path = range(len(vertices))
         total_cost = 0
         total_distance = 0
-        for k in range(len(vertices)):
-            total_cost += vertices[k].cost_to(vertices[(k + 1) % len(vertices)])
-            total_distance += vertices[k].distance_to(vertices[(k + 1) % len(vertices)])
+        for i in range(len(vertices)):
+            total_cost += vertices[path[i]].cost_to(vertices[(path[(i + 1) % len(vertices)])])
+            total_distance += vertices[path[i]].distance_to(vertices[(path[(i + 1) % len(vertices)])])
         return total_cost, total_distance
 
     def generate_vertices(cost_path, distance_path):

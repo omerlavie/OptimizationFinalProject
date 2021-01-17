@@ -51,12 +51,34 @@ def generate_vertices(cost_path, distance_path):
 
 
 if __name__ == '__main__':
-    a = generate_matrix(40, 30, 1200)
-    with open("data/vertices_cost2.csv", "w", newline='') as f:
+    a = generate_matrix(20, 30, 1200)
+    with open("data/vertices_cost20.csv", "w", newline='') as f:
         writer = csv.writer(f)
         writer.writerows(a)
 
-    b = generate_vertices_locations(40, 100, 16000)
-    with open("data/vertices_distances2.csv", "w", newline='') as f:
+    b = generate_vertices_locations(20, 100, 16000)
+    with open("data/vertices_distances20.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(b)
+
+
+    a = generate_matrix(50, 30, 1200)
+    with open("data/vertices_cost50.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(a)
+
+    b = generate_vertices_locations(50, 100, 16000)
+    with open("data/vertices_distances50.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(b)
+
+
+    a = generate_matrix(100, 30, 1200)
+    with open("data/vertices_cost100.csv", "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(a)
+
+    b = generate_vertices_locations(100, 100, 16000)
+    with open("data/vertices_distances100.csv", "w", newline='') as f:
         writer = csv.writer(f)
         writer.writerows(b)

@@ -154,12 +154,14 @@ class SolveTSPUsingACO:
         y.append(y[0])
 
         vertices = []
-        cost_table = genfromtxt("vertices_cost3.csv", delimiter=',')
+        cost_table = genfromtxt("data/vertices_cost4.csv", delimiter=',')
         for i in range(len(self.nodes)):
             vertices.append(Vertex(cost_table, self.nodes[i].x, self.nodes[i].y, i))
-        total_cost, total_dist = Vertex.calc_path_weights(vertices)
-        print(f"Total cost is: {total_cost} and total distance is: {total_dist}")
 
+        shortest_path = [(self.labels[i] - 1) for i in self.global_best_tour]
+        print(type(shortest_path))
+        total_cost, total_dist = Vertex.calc_path_weights(vertices, shortest_path)
+        print(f"Total cost is: {total_cost} and total distance is: {total_dist}")
         plt.plot(x, y, linewidth=line_width)
         plt.scatter(x, y, s=math.pi * (point_radius ** 2.0))
         plt.title(self.mode)
@@ -174,7 +176,8 @@ class SolveTSPUsingACO:
 
 
 if __name__ == '__main__':
-    vertices = Vertex.generate_vertices('vertices_cost3.csv', 'vertices_distances3.csv')
+    bop = 4
+    vertices = Vertex.generate_vertices('data/vertices_cost4.csv', 'data/vertices_distances4.csv')
     _colony_size = 30
     _steps = 200
     acs = SolveTSPUsingACO(mode='ACS', colony_size=_colony_size, steps=_steps, nodes=vertices)
