@@ -118,4 +118,4 @@ def run_algorithm(n_cities, n_generations, snap_freq, cost_path, distance_path):
     
 if __name__ == "__main__":
     bop = 0
-    run_algorithm(25, 20, 1, "vertices_cost2.csv", "vertices_distances2.csv")
+    run_algorithm(25, 20, 1, "data/vertices_cost2.csv", "data/vertices_distances2.csv")

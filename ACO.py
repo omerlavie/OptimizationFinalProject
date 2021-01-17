@@ -2,7 +2,7 @@ import math
 import random
 from matplotlib import pyplot as plt
 from Vertex import Vertex
-
+from numpy import genfromtxt
 
 bop = 0
 NUMBER_OF_OPTIONS = 5
@@ -174,7 +174,7 @@ class SolveTSPUsingACO:
 
 
 if __name__ == '__main__':
-    vertices = generate_vertices('vertices_cost3.csv', 'vertices_distances3.csv')
+    vertices = Vertex.generate_vertices('vertices_cost3.csv', 'vertices_distances3.csv')
     _colony_size = 30
     _steps = 200
     acs = SolveTSPUsingACO(mode='ACS', colony_size=_colony_size, steps=_steps, nodes=vertices)
